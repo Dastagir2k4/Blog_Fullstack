@@ -66,4 +66,15 @@ router.get("/get-blog/:id", (req, res) => {
     });
 });
 
+
+router.get("/get-favourite-blogs",(req, res) => {
+    const id = req.params.id;
+    Blog.find({ isFavorite: true }).then((blogs) => {
+        res.status(200).json(blogs);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send("Error occurred");
+    });
+
+});
 module.exports = router;
